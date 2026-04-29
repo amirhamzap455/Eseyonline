@@ -1,1 +1,190 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart Earning Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Monetag -->
+<script src="//libtl.com/sdk.js" data-zone="YOUR_ZONE_ID"></script>
+
+<style>
+body {margin:0;font-family:sans-serif;background:#eef2f3;}
+
+header {
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+nav {
+background:#0a74da;
+text-align:center;
+padding:10px;
+}
+
+nav a {
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+cursor:pointer;
+}
+
+.hero {
+background:white;
+padding:25px;
+text-align:center;
+}
+
+.container {
+padding:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.card {
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover {transform:scale(1.03);}
+
+h2 {color:#0a74da;}
+
+footer {
+background:#111;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:20px;
+}
+
+/* POPUP */
+#popup {
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+}
+
+.popup-content {
+background:white;
+width:90%;
+max-width:500px;
+margin:100px auto;
+padding:20px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>💰 Smart Earning Hub</h1>
+<p>Online Income | AI | Apps | Freelancing</p>
+</header>
+
+<nav>
+<a onclick="showAll()">Home</a>
+<a onclick="filter('earning')">Earning</a>
+<a onclick="filter('apps')">Apps</a>
+<a onclick="filter('ai')">AI Tools</a>
+</nav>
+
+<div class="hero">
+<h2>🚀 Start Earning Online Today</h2>
+<p>Best tips & tricks for beginners</p>
+</div>
+
+<div class="container" id="container"></div>
+
+<!-- POPUP -->
+<div id="popup">
+<div class="popup-content">
+<h2 id="pTitle"></h2>
+<p id="pContent"></p>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<footer>
+<p>© 2026 Smart Earning Hub</p>
+</footer>
+
+<script>
+
+let posts = [
+{
+title:"📱 Mobile Income Guide",
+content:"Mobile diye freelancing, AI tools use kore income kora jai...",
+type:"earning"
+},
+{
+title:"🔥 Top Earning Apps",
+content:"Trusted apps use kore income start kora jai...",
+type:"apps"
+},
+{
+title:"🤖 AI Tools for Income",
+content:"AI tools diye YouTube automation & content creation possible...",
+type:"ai"
+},
+{
+title:"💻 Fiverr Guide",
+content:"Fiverr e gig create kore first order pawar strategy...",
+type:"earning"
+},
+{
+title:"📈 SEO Tips",
+content:"Google ranking baranor jonno SEO content lagbe...",
+type:"ai"
+}
+];
+
+function showAll(){
+render(posts);
+}
+
+function filter(type){
+let filtered = posts.filter(p => p.type === type);
+render(filtered);
+}
+
+function render(data){
+let html="";
+data.forEach((p,i)=>{
+html+=`
+<div class="card" onclick="openPost('${p.title}','${p.content}')">
+<h3>${p.title}</h3>
+<p>${p.content.substring(0,60)}...</p>
+</div>`;
+});
+document.getElementById("container").innerHTML=html;
+}
+
+function openPost(title,content){
+document.getElementById("pTitle").innerText=title;
+document.getElementById("pContent").innerText=content;
+document.getElementById("popup").style.display="block";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+showAll();
+
+</script>
+
+</body>
+</html>
